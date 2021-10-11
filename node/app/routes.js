@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 // Importar controladores
-const UserController = require('./controllers/UserController');
-const ProductController = require('./controllers/ProductController');
+//const UserController = require('./app/controllers/UserController');
+const ProductController = require('../app/controllers/ProductController');
 
 // Products
 router.post('/', ProductController.create);
