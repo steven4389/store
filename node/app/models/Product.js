@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     valor:DataTypes.DOUBLE,
     peso:DataTypes.FLOAT,
     stock:DataTypes.INTEGER,
-    category:DataTypes.STRING,
     descripcion:DataTypes.TEXT
   }, {
     tableName: "products"
@@ -18,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Product.associate = function(models) {
     // Usuario tiene un domicilio o una direccion
+    Product.belongsTo(models.Category, { as: "category", foreignKey: "category_id" });
    
   };
 

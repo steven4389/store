@@ -1,5 +1,5 @@
 //const { Address } = require('../models/index');
-const {Product} = require('../models/index');
+const {Product, Category} = require('../models/index');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -36,7 +36,7 @@ module.exports = {
     // INDEX /api/productos
     sowAll(req, res) {
         console.log('entro');
-        Product.findAll().then(productos => {
+        Product.findAll({ include: 'category' }).then(productos => {
             res.json(productos);
         })
     },
