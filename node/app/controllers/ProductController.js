@@ -1,5 +1,4 @@
-//const { Address } = require('../models/index');
-const {Product, Category} = require('../models/index');
+const {Product} = require('../models/index');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
