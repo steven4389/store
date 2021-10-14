@@ -13,3 +13,11 @@
     margin: 0px auto 0px auto;
     padding: 20px;
 }
+
+.github{
+    background-color: green;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -45,7 +45,7 @@ const Gallery = ({ keyword }) => {
                     return (<div className="itemProduct">
                         <div><strong>Nombre:</strong> {item.name}</div>
                         <div><strong>Precio:</strong> {item.valor}</div>
-                        <div><strong>categoria:</strong> {item.hasOwnProperty('category')&&item.category.name}</div>
+                        {/* <div><strong>categoria:</strong> {item.hasOwnProperty('category')&&item.category.name}</div> */}
                     </div>);
                 }) :
                 productos !== undefined ?
