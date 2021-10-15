@@ -17,16 +17,38 @@ const Login = () => {
         })
     }
 
-    // const submit = (e) => {
-    //     e.preventDefault();
-    //     history.push('/home')
-    // }
 
-    const responseGoogle = (response) => {
-        console.log('responseGoogle',response);
+    const responseGoogle = async (response) => {
+        console.log('responseGoogle', response);
         if (response.tokenId) {
-            cookie.save('token', response.tokenId);
-            history.push('/home')
+            try {
+                cookie.save('token', response.tokenId);
+                const user = await fetch('http://localhost:5000/api/createUser', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: response.profileObj.name,
+                        lastname: response.profileObj.familyName,
+                        email: response.profileObj.email
+                    })
+                });
+
+                const content = await user.json();
+                console.log('+++++++++++++++++++', content.user.Roles[0].name);
+
+                if (content.user.Roles[0].name == 'admin') {
+                    history.push('/admin')
+                    return;
+                }
+                history.push('/pendiente')
+
+            } catch (error) {
+                console.log('error', error);
+            }
+
         }
     }
 

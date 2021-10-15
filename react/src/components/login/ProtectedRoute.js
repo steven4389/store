@@ -14,8 +14,8 @@ const ProtectedRoute = ({ ...props }) => {
     const [auth, setAuth] = useState(null)
 
     useEffect(() => {
-       console.log('aca toy useEffect');
-       verify(cookie.load('token'))
+        console.log('aca toy useEffect');
+        verify(cookie.load('token'))
     }, [auth])
 
     const verify = async (token) => {
@@ -27,27 +27,32 @@ const ProtectedRoute = ({ ...props }) => {
         else {
             console.log('token existe', typeof cookie.load('token'));
 
-            const ticket = await client.verifyIdToken({
-                idToken: token,
-                audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
-                // Or, if multiple clients access the backend:
-                //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
-            });
-            console.log('tticket', ticket);
+            try {
+                const ticket = await client.verifyIdToken({
+                    idToken: token,
+                    audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+                    // Or, if multiple clients access the backend:
+                    //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+                });
+                console.log('tticket', ticket);
 
-            const payload = ticket.getPayload();
-            const userid = payload['sub'];
-            console.log('userid', userid);
-            setAuth(true);
-            console.log('----------------------');
-            // If request specified a G Suite domain:
-            // const domain = payload['hd'];
+                const payload = ticket.getPayload();
+                const userid = payload['sub'];
+                console.log('userid', userid);
+                setAuth(true);
+                console.log('----------------------');
+                // If request specified a G Suite domain:
+                // const domain = payload['hd'];
+            } catch (error) {
+                console.log('error', error);
+            }
+
 
         }
 
     }
 
-    
+
 
     return (<div>
         {console.log('auth', auth)}
