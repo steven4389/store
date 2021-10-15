@@ -4,7 +4,8 @@ const axios = require('axios');
 
 // Importar controladores
 const ProductController = require('../app/controllers/ProductController');
-const AuthController = require('../app/controllers/AuthController');
+const UserController = require('../app/controllers/UserController');
+
 
 // Products
  router.post('/', ProductController.create);
@@ -13,7 +14,7 @@ const AuthController = require('../app/controllers/AuthController');
  router.get('/:id', ProductController.showById);
  router.patch('/:id', ProductController.update);
  router.delete('/:id', ProductController.delete);
-
+ router.post('/createUser', UserController.create);
 
 
 

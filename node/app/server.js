@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 // Rutas
-app.use(require('./routes'));
+app.use('/api',require('./routes'));
 
 
 // Arrancamos el servidor
