@@ -15,7 +15,7 @@ const UserController = require('../app/controllers/UserController');
  router.patch('/:id', ProductController.update);
  router.delete('/:id', ProductController.delete);
  router.post('/createUser', UserController.create);
-
+ router.get('/users/pendientes', UserController.showUsers);
 
 
 module.exports = router;

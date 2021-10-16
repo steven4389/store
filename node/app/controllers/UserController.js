@@ -27,13 +27,38 @@ module.exports = {
                 return;
             }
             console.log('response user exist', response[0].dataValues);
-            res.json({user:response[0].dataValues});
+            res.json({ user: response[0].dataValues });
 
         } catch (error) {
             console.log('error', error);
         }
 
+    },
+
+    async showUsers(req, res) {
+        try {
+            var response = ''
+            const Op = Sequelize.Op;
+            response = await User.findAll(
+                {
+                    include: [{
+                        model: Role
+                    }]
+                }
+            );
+
+            let usersWithoutRole = response.filter(item => {
+                console.log('item', item.dataValues.Roles);
+                return item.dataValues.Roles.length == 0;
+            })
+
+            res.json(usersWithoutRole);
+
+        } catch (error) {
+            res.json(response);
+        }
     }
+
 
 }
 
