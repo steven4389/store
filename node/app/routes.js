@@ -16,6 +16,9 @@ const UserController = require('../app/controllers/UserController');
  router.delete('/:id', ProductController.delete);
  router.post('/createUser', UserController.create);
  router.get('/users/pendientes', UserController.showUsers);
+ router.get('/test/test', (req, res)=>{ 
+	res.json({"message": "aplicacion desplegada"});
+ });
 
 
 module.exports = router;
